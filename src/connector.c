@@ -81,10 +81,9 @@ awe_status_t awe_connector_open2(awe_connector *connector, awe_connection_t* tcp
 
 void awe_connector_close(awe_connector *connector){
 	awe_connector_rmEventHandler(connector);
-
-	if(connector->_conn != NULL){
-		awe_connection_close(connector->_conn);
-	}
+//	if(connector->_conn != NULL){
+//		awe_connection_close(connector->_conn);
+//	}
 }
 
 awe_connection_t* awe_connector_takeout(awe_connector *connector){
@@ -201,10 +200,9 @@ awe_status_t awe_uxconnector_open2(awe_uxconnector* connector, awe_connection_t*
 
 void awe_uxconnector_close(awe_uxconnector* connector){
 	awe_uxconnector_rmEventHandler(connector);
-
-	if(connector->_uxconn != NULL){
-		awe_connection_close(connector->_uxconn);
-	}
+//	if(connector->_uxconn != NULL){
+//		awe_connection_close(connector->_uxconn);
+//	}
 }
 
 awe_connection_t* awe_uxconnector_takeout(awe_uxconnector *connector){

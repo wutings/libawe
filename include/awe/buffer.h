@@ -24,6 +24,7 @@ void awe_buffer_deinit(awe_buffer* buffer);
 
 int32_t awe_buffer_capacity(awe_buffer* buffer);
 
+char* awe_buffer_base(awe_buffer* buffer);
 char* awe_buffer_base2(awe_buffer* buffer, int32_t expandIfNecessary);
 
 AWE_END_DECLS

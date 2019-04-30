@@ -40,6 +40,10 @@ int32_t awe_buffer_capacity(awe_buffer* buffer){
 	return buffer->_capacity;
 }
 
+char* awe_buffer_base(awe_buffer* buffer){
+	return buffer->_data;
+}
+
 char* awe_buffer_base2(awe_buffer* buffer, int32_t expandIfNecessary){
 	if(expandIfNecessary > buffer->_capacity){
 		awe_buffer_expand(buffer, expandIfNecessary);
