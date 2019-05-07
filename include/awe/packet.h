@@ -65,6 +65,8 @@ void awe_packet_setrange(awe_packet *packet, int32_t offset, int32_t size);
 void awe_packet_setrange2(awe_packet *packet, int32_t offset, int32_t size);
 void awe_packet_setrange3(awe_packet *packet, int32_t offset, int32_t size);
 
+void awe_packet_unfree_data(awe_packet *packet, bool b);
+
 AWE_END_DECLS
 
 #endif /* AWE_PACKET_H_ */

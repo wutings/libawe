@@ -86,3 +86,7 @@ void awe_packet_setrange3(awe_packet *packet, int32_t offset, int32_t size){
 //    AWE_CHECK_LE(packet->_rangeOffset, packet->_capacity);
     AWE_CHECK_LE(packet->_rangeOffset + packet->_rangeLength, packet->_capacity);
 }
+
+void awe_packet_unfree_data(awe_packet *packet, bool b){
+	packet->_ownsData = !b;
+}
