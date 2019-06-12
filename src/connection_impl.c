@@ -27,8 +27,10 @@ static awe_status_t inet_stream_open(awe_connection_t *conn, const char *host, u
 		return AWE_OK;
 	}
 
+	awe_status_t ret = -1;
 	do{
 		if(awe_socket_addrinfo(&conn->_saddr, host, port) != AWE_OK){
+			ret = -2;
 			break;
 		}
 
@@ -53,7 +55,7 @@ static awe_status_t inet_stream_open(awe_connection_t *conn, const char *host, u
 		return AWE_OK;
 	}while(0);
 	inet_stream_close(conn);
-	return -1;
+	return ret;
 }
 
 static awe_status_t inet_stream_open2(awe_connection_t *conn, struct sockaddr *addr, socklen_t addrlen, uint16_t bindPort){

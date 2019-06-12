@@ -64,7 +64,6 @@ AWE_DECLARE(int) awe_socket_addrinfo(socket_addr *sa, const char *host, uint16_t
 		freeaddrinfo(answer);
 		return 0;
 	}while(0);
-	freeaddrinfo(answer);
 	return -1;
 }
 
