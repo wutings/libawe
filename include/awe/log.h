@@ -190,7 +190,9 @@ typedef enum android_LogPriority {
 extern "C" {
 #endif
 
-void awe_log_init(int prio, const char* filename);
+typedef void awe_log_callback(int prio, const char* log_ts, const char* tag, const char* log);
+
+void awe_log_init(int prio, const char* filename, awe_log_callback* cb);
 void awe_log_deinit(void);
 
 AWE_DECLARE(void) __awe_log_write(int prio, const char *tag, const char *fmt, ...);

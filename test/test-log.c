@@ -55,10 +55,16 @@ void scheduler_test(){
 	awe_scheduler_destroy(sched);
 }
 
+static void my_log_callback(int prio, const char* log_ts, const char* tag, const char* log){
+	printf("my_log_callback, %s[%s]%s\n", log_ts, tag, log);
+}
+
 int main(int argc, char* argv[]){
+	awe_log_init(ANDROID_LOG_DEFAULT, NULL, my_log_callback);
 
 	scheduler_test();
 
+	awe_log_deinit();
 	ALOGV("end");
 
 	return 0;

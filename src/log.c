@@ -36,6 +36,8 @@ int awe_log_level = ANDROID_LOG_DEFAULT;
 
 static FILE* _log_file = NULL;
 
+static awe_log_callback* _log_cb = NULL;
+
 /*! \brief Coloured prefixes for errors and warnings logging. */
 static const char *awe_log_prefix[] = {
 /* no colors */
@@ -98,9 +100,13 @@ AWE_DECLARE(void) __awe_log_write(int prio, const char *tag, const char *fmt, ..
 			(unsigned long)awe_os_thread_id());
 
 #if defined(ANDROID)
-	  __android_log_print(prio, tag, "%s", buf);
+	__android_log_print(prio, tag, "%s", buf);
 #else
-	printf("%s%s[%s]%s\n", awe_log_prefix[prio], log_ts, tag, buf);
+	if(_log_cb == NULL){
+		printf("%s%s[%s]%s\n", awe_log_prefix[prio], log_ts, tag, buf);
+	}else{
+		_log_cb(prio, log_ts, tag, buf);
+	}
 #endif
 
 	if(_log_file != NULL){
@@ -109,7 +115,7 @@ AWE_DECLARE(void) __awe_log_write(int prio, const char *tag, const char *fmt, ..
 	}
 }
 
-void awe_log_init(int prio, const char* filename){
+void awe_log_init(int prio, const char* filename, awe_log_callback* cb){
 	if(prio > 0){
 		awe_log_level = prio;
 	}
@@ -120,6 +126,8 @@ void awe_log_init(int prio, const char* filename){
 	}else{
 		_log_file = NULL;
 	}
+
+	_log_cb = cb;
 }
 
 void awe_log_deinit(void){
